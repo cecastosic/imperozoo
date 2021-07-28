@@ -5,12 +5,11 @@ import { ListAnimals } from "./components/ListAnimals";
 import { Pet } from "./components/ProfileBox";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import dayjs from "dayjs";
-
 import axios from "axios";
 
 function App() {
   const [data, setData] = useState<Pet[]>([]);
-  const [isChangedData, setIsChangedData] = useState<boolean>(false);
+  const [isDataChanged, setIsDataChanged] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [tableData, setTableData] = useState<TableData[]>([]);
 
@@ -23,7 +22,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, [isChangedData]);
+  }, [isDataChanged]);
 
   useEffect(() => {
     if (data.length) {
@@ -44,7 +43,7 @@ function App() {
     await axios
       .patch(`http://localhost:3000/animals/${id}`, { status: "Booked" })
       .catch((err) => setError(err));
-    setIsChangedData(true);
+    setIsDataChanged(true);
   };
 
   return (

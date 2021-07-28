@@ -1,4 +1,4 @@
-import { Administration } from "./Administration";
+import { Administration, TableData } from "./Administration";
 
 export default {
   title: "Components/Administration",
@@ -21,6 +21,6 @@ export const administration = () => {
       age: 2,
       status: "Unadopted",
     },
-  ];
+  ] as TableData[];
   return <Administration data={data} />;
 };

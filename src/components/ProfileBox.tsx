@@ -2,11 +2,18 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { Button } from "./Button";
 
-//type Sex = "Female" | "Male";
+enum Sex {
+  Female = "Female",
+  Male = "Male",
+}
 
-//type Status = "Booked" | "Adopted" | "Unadopted";
+enum Status {
+  Booked = "Booked",
+  Adopted = "Adopted",
+  Unadopted = "Unadopted",
+}
 
-export enum FluffynessLevel {
+enum FluffynessLevel {
   BelowAverage = 1,
   Average = 2,
   MoreThanAverage = 3,
@@ -16,11 +23,11 @@ export enum FluffynessLevel {
 export type Animal = {
   id: number;
   name: string;
-  sex: string; //Sex
+  sex: Sex;
   breed: string;
   birth: string;
   photo: string;
-  status: string; //Status
+  status: Status;
   note?: string;
 };
 
@@ -38,12 +45,12 @@ export type Cat = Animal & {
 
 export type Pet = Dog | Cat;
 
-type ProfileBoxType = {
+type ProfileBoxProps = {
   data: Pet;
   changeStatusToBooked: (id: number) => void;
 };
 
-export const ProfileBox = ({ data, changeStatusToBooked }: ProfileBoxType) => {
+export const ProfileBox = ({ data, changeStatusToBooked }: ProfileBoxProps) => {
   const [clicked, setClicked] = useState<boolean>(false);
   const background =
     data.type === "Cat"
@@ -51,6 +58,25 @@ export const ProfileBox = ({ data, changeStatusToBooked }: ProfileBoxType) => {
       : `url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTgiIGhlaWdodD0iNTIiIHZpZXdCb3g9IjAgMCA1OCA1MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI4LjU0MDUgMzguNTUzM0MzMS4yMzQxIDM4LjU1MzMgMzMuNDE3NyAzNi45MTU3IDMzLjQxNzcgMzQuODk1NUMzMy40MTc3IDMyLjg3NTMgMzEuMjM0MSAzMS4yMzc2IDI4LjU0MDUgMzEuMjM3NkMyNS44NDY5IDMxLjIzNzYgMjMuNjYzNCAzMi44NzUzIDIzLjY2MzQgMzQuODk1NUMyMy42NjM0IDM2LjkxNTcgMjUuODQ2OSAzOC41NTMzIDI4LjU0MDUgMzguNTUzM1oiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMzUuMjQ2NiAyMi43MDI2VjIyLjcwMjZDMzUuNTgzMyAyMi43MDI2IDM1Ljg1NjIgMjIuOTc1NiAzNS44NTYyIDIzLjMxMjMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMzQuNjM3IDIzLjMxMjNWMjMuMzEyM0MzNC42MzcgMjIuOTc1NiAzNC45MDk5IDIyLjcwMjYgMzUuMjQ2NiAyMi43MDI2IiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTM1LjI0NjYgMjMuOTIxOVYyMy45MjE5QzM0LjkwOTkgMjMuOTIxOSAzNC42MzcgMjMuNjQ5IDM0LjYzNyAyMy4zMTIzIiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTM1Ljg1NjIgMjMuMzEyM0MzNS44NTYyIDIzLjY0OSAzNS41ODMzIDIzLjkyMTkgMzUuMjQ2NiAyMy45MjE5IiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTIxLjgzNDQgMjIuNzAyNlYyMi43MDI2QzIyLjE3MTEgMjIuNzAyNiAyMi40NDQxIDIyLjk3NTYgMjIuNDQ0MSAyMy4zMTIzIiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTIxLjIyNDggMjMuMzEyM1YyMy4zMTIzQzIxLjIyNDggMjIuOTc1NiAyMS40OTc3IDIyLjcwMjYgMjEuODM0NCAyMi43MDI2IiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTIxLjgzNDQgMjMuOTIxOVYyMy45MjE5QzIxLjQ5NzcgMjMuOTIxOSAyMS4yMjQ4IDIzLjY0OSAyMS4yMjQ4IDIzLjMxMjMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMjIuNDQ0MSAyMy4zMTIzQzIyLjQ0NDEgMjMuNjQ5IDIyLjE3MTEgMjMuOTIxOSAyMS44MzQ0IDIzLjkyMTkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMzcuNjM4OCA0Ny4wODg0VjQ3LjA4ODRDMzIuOTQyOSA0Ni44MTM3IDI5LjExNDMgNDMuMjIyMiAyOC41NDA1IDM4LjU1MzNWMzguNTUzM0MyNy45NjY3IDQzLjIyMjIgMjQuMTM4MSA0Ni44MTM3IDE5LjQ0MjIgNDcuMDg4NCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik00Ni40MTA0IDI1LjY0ODRDNDQuNTgzOSA0Mi41NzcgMzcuMDIxOSA1MC43NDYyIDI4LjU0MDUgNTAuNzQ2MkMyMC4wNTkyIDUwLjc0NjIgMTIuNDk3MSA0Mi41NzcgMTAuNjcwNiAyNS42NDg0IiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTQwLjA3OTkgMTAuODc1NUM0MC4wNzk5IDEwLjg3NTUgNDIuOTY3MSAyOC4xODk0IDUwLjE3OCAyNi43NDMzQzU2LjE3OTMgMjUuNTQxMSA2MC4yNzYxIDUuMTAzNDMgNTEuNjIxNiAyLjIxODU5VjIuMjE4NTlDNDYuOTgzOSAwLjQyMTk3MSA0MS44NDI1IDAuNDIxOTcxIDM3LjIwNDggMi4yMTg1OUwzNy4yMDQ4IDIuMjE4NTlDMzEuNjAwNCAwLjI1NTQwMSAyNS40OTUyIDAuMjU1NDA0IDE5Ljg5MDkgMi4yMTg2TDE5Ljg5MDkgMi4yMTg2QzE1LjI0OTYgMC40MjM0NTIgMTAuMTA1NiAwLjQyMzQ1MiA1LjQ2NDMgMi4yMTg2Qy0zLjE5MDIgNS4xMDM0MyAwLjkwNjYwNyAyNS41NDExIDYuOTA3OTMgMjYuNzQzM0MxNC4xMTM5IDI4LjE4OTQgMTcuMDAxMiAxMC44NzU1IDE3LjAwMTIgMTAuODc1NSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=") #518E3C no-repeat right 1.25rem top 0.9rem`;
   const isDisabled =
     data.status === "Adopted" || data.status === "Booked" || clicked;
+  const isDogGoodBoy = data.type === "Dog" && data.goodBoy ? "Yes" : "No";
+
+  const fluffynessLevelDescription = (level: FluffynessLevel) => {
+    let text;
+    switch (level) {
+      case 1:
+        text = "Below Average";
+        break;
+      case 3:
+        text = "More Than Average";
+        break;
+      case 4:
+        text = "Extreme";
+        break;
+      default:
+        text = "Average";
+    }
+    return text;
+  };
 
   return (
     <div className="w-full md:w-1/3 lg:w-1/4 border border-gray-400 flex-grow">
@@ -109,10 +135,8 @@ export const ProfileBox = ({ data, changeStatusToBooked }: ProfileBoxType) => {
           </div>
           <div className="text-lg leading-tight font-semibold">
             {data.type === "Cat"
-              ? data.fluffynessLevel
-              : data.goodBoy
-              ? "Yes"
-              : "No"}
+              ? fluffynessLevelDescription(data.fluffynessLevel)
+              : isDogGoodBoy}
           </div>
         </div>
         <div>
