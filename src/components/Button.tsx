@@ -1,9 +1,9 @@
 import { MouseEvent, ReactNode } from "react";
 
 type ButtonProps = {
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  variant?: "disabled" | "default";
   children: ReactNode;
-  variant?: string;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
 export const Button = ({

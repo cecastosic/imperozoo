@@ -1,4 +1,3 @@
-import React from "react";
 import { action } from "@storybook/addon-actions";
 import { ProfileBox, Cat, Dog } from "./ProfileBox";
 
@@ -10,6 +9,7 @@ export default {
 export const profileBoxCat = () => {
   const data = {
     id: 3,
+    type: "Cat",
     meowsPerDay: 62,
     fluffynessLevel: 1,
     name: "Lola",
