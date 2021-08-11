@@ -1,8 +1,10 @@
 # IMPEROZOO
 
-![image](https://user-images.githubusercontent.com/10253713/127237564-be0218b1-a81f-4d74-90c8-b76761695b6e.png)'
+![image](https://user-images.githubusercontent.com/10253713/127282212-94bd9cf8-3a1a-4ea0-b478-fd79df471507.png)'
 
-![image](https://user-images.githubusercontent.com/10253713/127237646-c8fd33b9-94b5-4eb2-8dda-9d1b84c2f187.png)'
+![image](https://user-images.githubusercontent.com/10253713/127282201-f3b81bd9-610d-4c99-be10-c9bcb3234e71.png)'
+
+![image](https://user-images.githubusercontent.com/10253713/127282193-ce3bb1e9-3ce1-4c34-aab7-51a9c1ff6689.png)'
 
 
 # Getting Started with Create React App
